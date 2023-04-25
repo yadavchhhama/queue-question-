@@ -1,0 +1,110 @@
+Implement Queue using Stacks
+
+class MyQueue {
+public:
+    int q[200];
+    int front =0;
+    int rear = 0;
+    MyQueue() { 
+    }
+    
+    void push(int x) {
+        q[rear] = x;
+        rear++;
+    }
+    
+    int pop() {
+        if(empty()){
+            return true;
+        }
+        int a = q[front];
+        front++;
+        return a;
+    }
+    
+    int peek() {
+         return q[front];
+        
+    }
+    
+    bool empty() {
+        if(front == rear){
+            return true;
+        }
+        else{
+            return false;
+        }
+ 
+ Design Circular Queue
+ 
+ class MyCircularQueue {
+public:
+    int* q;
+    int size;
+    int front = -1;
+    int rear = -1;
+    MyCircularQueue(int k) {
+           size = k;
+         q = new int[k];
+     
+    }
+    
+    bool enQueue(int value) {
+         if(isFull())
+            return false;
+         if(isEmpty())
+            front=0;
+        rear=(rear+1)%size;
+        q[rear]=value;
+        return true;
+    }
+    
+    bool deQueue() {
+        if(isEmpty()){
+            return false;
+        }
+         if(front==rear)
+            front=rear=-1;
+        
+        else
+            front=(front+1)%size;
+        return true;
+    }
+    
+    int Front() {
+        if(isEmpty()){
+            return -1;
+        }
+        else{
+            return q[front];
+        }
+    }
+    
+    int Rear() {
+        if(isEmpty()){
+            return -1;
+        }
+        else{
+            return q[rear];
+        }
+        
+    }
+    
+    bool isEmpty() {
+        if(front == -1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    bool isFull() {
+        if((rear+1)%size == front){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+};
